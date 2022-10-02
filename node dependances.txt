@@ -1,0 +1,5 @@
+npm i -s nodemone (Dépendance qui permet de redémarer le serveur automatiquement)
+npm i -s body-parser(Dépendance de midlwares)
+npm i -s validator(Dépendance qui permet de valider un email)
+npm i -s bcrypt(Dépendance pour installer le module de cryptage de pasword)
+npm i -s jsonwebtoken( la dépendance pour faire les sections) 
