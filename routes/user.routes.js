@@ -12,11 +12,13 @@ router.post("/register", authController.signUp);
 //et appel la fonction getAllusers
 ///************ */
 //route pour ce loger
-//router.post("/login", authController.signIn);
+ router.post("/login", authController.signIn);
 //****************** */
-//route pour ce déconnecter
+//route pour ce déconnecters
 router.get("/logout", authController.logout);
 //****************** */
+//la route  pour avoir tous les users de la base.elle pointe sur user controller
+//et appel la fonction getAllusers
 router.get("/", userController.getAllUsers);
 //la route pour lister un user grace à son id elle pointe sur user controller et appel le 
 //fonction userInfo
@@ -30,6 +32,7 @@ router.delete("/:id", userController.deleteUser);
 router.patch("/follow/:id", userController.follow);
 //neplus suivrerun user
 router.patch("/unfollow/:id", userController.unfollow);
+
 
 
 
