@@ -3,6 +3,9 @@
 const UserModel = require('../models/user.model');
 //importer jasonwebtoken
 const jwt = require('jsonwebtoken');
+//importation de errors.utils.js
+const { signUpErrors, signInErrors} = require('../utils/errors.utils');
+
 
 
 //une fonction pour utiliser le token de JWT
@@ -25,9 +28,12 @@ module.exports.signUp = async (req, res) => {
       const user = await UserModel.create({pseudo, email, password });
       res.status(201).json({ user: user._id});
     }
+    //gestion des erreurs de conexion
     catch(err) {
-      //const errors = signUpErrors(err);
-      res.status(200).send({ err })
+      //cette partie fais call à signUpErrors de error.utils.js
+      //verification de pseudo psw et email.
+      const errors = signUpErrors(err);
+      res.status(200).send({ errors })
     }
 
 }
@@ -40,7 +46,10 @@ module.exports.signIn = async (req, res) => {
     res.cookie('jwt', token, { httpOnly: true, maxAge});
     res.status(200).json({user: user._id});
   }catch (err){
-    res.status(200).json(err);
+    //verification si email et psw sont correcte
+    //avant la conexion
+    const errors = signInErrors(err);
+    res.status(200).json({ errors });
   }
 }
 //fonction  de deconexion(on retire le token)
